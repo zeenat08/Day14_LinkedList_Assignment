@@ -6,79 +6,64 @@ namespace Day14_LinkedList_Assignments
 {
     class UC8_InsertAtParticularPosition
     {
-        internal Node head;
-        internal void Add(int data)
-        {
-            Node node = new Node(data);
-            if (this.head == null)
-                this.head = node;
-            else
+         internal Node head;
+            internal void Add(int data)
             {
-                Node temp = head;
-                while (temp.next != null)
+                Node node = new Node(data);
+                if (this.head == null)
+                    this.head = node;
+                else
                 {
-                    temp = temp.next;
+                    Node temp = head;
+                    while (temp.next != null)
+                    {
+                        temp = temp.next;
+                    }
+                    temp.next = node;
                 }
-                temp.next = node;
+                Console.WriteLine("\n{0} inserted into the Linked list", node.data);
             }
-            Console.WriteLine("{0} inserted into the linked list", node.data);
-        }
-        internal void Display()
-        {
-            Node temp = this.head;
-            if (temp == null)
+
+            internal bool Search(Node head, int x)
             {
-                Console.WriteLine("Linked list is empty");
-                return;
-            }
-            while (temp != null)
-            {
-                Console.Write(temp.data + " ");
-                temp = temp.next; //temp=null
-            }
-        }
-        internal Node Search(int value)
-        {
-            while (this.head != null)
-            {
-                if (this.head.data == value)
+                Node current = head; // Initialize current
+                while (current != null)
                 {
-                    return this.head;
+                    if (current.data == x)
+                        return true; // data found
+                    current = current.next;
                 }
-                this.head = this.head.next;
+                return false; // data not found
             }
-            return null;
-        }
-        internal Node InsertAtParticularPosition(int position, int data)
-        {
-            if (position < 1)
-                Console.WriteLine("Invalid position");
-            if (position == 1)
+
+            internal void InsertAfter(Node prev_node, int new_data)
             {
-                var newNode = new Node(data);
-                newNode.next = this.head;
-                head = newNode;
+                //Check if the given Node is null
+                if (prev_node == null)
+                {
+                    Console.WriteLine("The given previous node cannot be null");
+
+                    return;
+                }
+                Node new_node = new Node(new_data);
+                new_node.next = prev_node.next;
+                prev_node.next = new_node;
             }
-            else
+
+            internal void Display()
             {
                 Node temp = this.head;
-                while (position-- != 0)
+                if (temp == null)
                 {
-
-                    if (position == 1)
-                    {
-                        Node node = new Node(data);
-                        node.next = this.head.next;
-                        head.next = node;
-                        break;
-                    }
-                    temp = temp.next;//1000
+                    Console.WriteLine("Linked list is empty");
+                    return;
                 }
-                if (position != 1)
-                    Console.WriteLine("Position out of range");
+                while (temp != null)
+                {
+                    Console.Write(temp.data + " ");
+                    temp = temp.next; //temp=null
+                }
             }
-            return head;
         }
     }
-}
 
