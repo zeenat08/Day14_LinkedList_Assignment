@@ -21,9 +21,8 @@ namespace Day14_LinkedList_Assignments
                 }
                 temp.next = node;
             }
-            Console.WriteLine("{0} inserted into the linked list", node.data);
+            Console.WriteLine("\n{0} inserted into the Linked list", node.data);
         }
-
         internal bool Search(Node head, int x)
         {
             Node current = head; // Initialize current
@@ -37,4 +36,9 @@ namespace Day14_LinkedList_Assignments
         }
     }
 }
+
+
+
+
    
+             
