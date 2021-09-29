@@ -5,8 +5,8 @@ using System.Text;
 namespace Day14_LinkedList_Assignments
 {
     class UC9_Delete_Show_List_Size
-    { 
-
+    {
+        
         internal Node head; //new
         internal void Add(int data)
         {
@@ -22,8 +22,9 @@ namespace Day14_LinkedList_Assignments
                 }
                 temp.next = node;
             }
-            Console.WriteLine("{0} inserted into the linked list", node.data);
+            Console.WriteLine("\n{0} inserted into the linked list", node.data);
         }
+
         internal bool Search(Node head, int x)
         {
             Node current = head; // Initialize current
@@ -36,37 +37,70 @@ namespace Day14_LinkedList_Assignments
             return false; // data not found
         }
 
-        internal Node InsertAtParticularPosition(int position, int data)
+        internal void InsertAfter(Node prev_node, int new_data)
         {
-            if (position < 1)
-                Console.WriteLine("Invalid position");
-            if (position == 1)
+            //Check if the given Node is null
+            if (prev_node == null)
             {
-                var newNode = new Node(data);
-                newNode.next = this.head;
-                head = newNode;
-            }
-            else
-            {
-                Node temp = this.head;
-                while (position-- != 0) //
-                {
+                Console.WriteLine("The given previous node cannot be null");
 
-                    if (position == 1)
-                    {
-                        Node node = new Node(data);
-                        node.next = this.head.next;
-                        head.next = node;
-                        break;
-                    }
-                    temp = temp.next;//1000
-                }
-                if (position != 1)
-                    Console.WriteLine("Position out of range");
+                return;
             }
-            return head;
+            Node new_node = new Node(new_data);
+            new_node.next = prev_node.next;
+            prev_node.next = new_node;
         }
 
+        internal void DeleteNode(int key)
+        {
+            // Store head node
+            Node temp = head;
+            Node prev = null;
+            if (temp != null && temp.data == key)
+            {
+                // Changed head
+                head = temp.next;
+                return;
+            }
+            while (temp != null && temp.data != key)
+            {
+                prev = temp;
+                temp = temp.next;
+            }
+            // If key was not present in linked list
+            if (temp == null)
+                return;
+            // Unlink the node from linked list
+            prev.next = temp.next;
+        }
 
+        //Returns Count of Nodes in Linked List
+        internal int ShowListSize()
+        {
+            Node temp = head;
+            int count = 0; //Intializing as 0
+            while (temp != null)
+            {
+                count++; // Count will be get adding
+                temp = temp.next;
+            }
+            return count;
+
+
+        }
+        internal void Display()
+        {
+            Node temp = this.head;
+            if (temp == null)
+            {
+                Console.WriteLine("Linked list is empty");
+                return;
+            }
+            while (temp != null)
+            {
+                Console.Write(temp.data + " ");
+                temp = temp.next; //temp=null
+            }
+        }
     }
 }
