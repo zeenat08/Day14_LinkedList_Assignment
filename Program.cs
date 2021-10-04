@@ -133,22 +133,21 @@ namespace Day14_LinkedList_Assignments
 
             #endregion
 
+            #region
 
+            UC10_AscendingList list10 = new UC10_AscendingList();
+            list10.Add(56);
+            list10.Add(30);
+            list10.Add(40);
+            list10.Add(70);
+            Console.WriteLine("Linked List before Sorting..");
+            list10.Display();
+            list10.SortingList();
+            Console.WriteLine("\nLinkedList After sorting");
+            list10.Display();
 
-            //#region
+            #endregion
 
-            //    //UC10_AscendingList list10 = new UC10_AscendingList();
-            //    //list10.Add(56);
-            //    //list10.Add(30);
-            //    //list10.Add(40);
-            //    //list10.Add(70);
-            //    //Console.WriteLine("Linked List before Sorting..");
-            //    //list10.Display();
-            //    Console.WriteLine("\nLinkedList After sorting");
-            //    list10.Display();
-
-            //    #endregion
-            //}
         }
     }
 }
